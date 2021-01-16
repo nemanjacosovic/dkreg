@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.dkreg-logo {
+  width: auto;
+  height: 64px;
+  display: inline-block;
+}

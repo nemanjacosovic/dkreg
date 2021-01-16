@@ -76,7 +76,7 @@ function App() {
                     <div>
                         <h1>
                             <a href="/" title="Hjemmeside">
-                                <Logo title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo"/>
+                                <Logo title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo" className="dkreg-logo"/>
                                 <span>DK reg</span>
                             </a>
                         </h1>
