@@ -16,8 +16,10 @@ code {
     monospace;
 }
 
-.dkreg-logo {
-  width: auto;
-  height: 64px;
-  display: inline-block;
-}
+.dkreg-header {}
+.dkreg-header__title {}
+  .dkreg-header__title span {
+    display: none;
+  }
+.dkreg-header__logo {}
+
