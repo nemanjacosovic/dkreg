@@ -41,5 +41,5 @@ testem.log
 /typings
 
 # System Files
-Thumbs.db
 .eslintcache
+Thumbs.db
