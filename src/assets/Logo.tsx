@@ -4,13 +4,15 @@ interface ISVGProps {
     title?: string;
     description?: string;
     className?: string;
+    svgWidth?: string;
+    svgHeight?: string;
 }
 
 const Logo: FunctionComponent<ISVGProps> = (props) => {
-    const {title, description, className} = props;
+    const {title, description, className, svgWidth, svgHeight} = props;
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85.42 90" className={className}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 90" width="85" height="90" className={className} style={{ width: svgWidth, height: svgHeight }}>
             <title>{title}</title>
             <desc>{description}</desc>
             <path

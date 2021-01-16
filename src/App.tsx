@@ -72,15 +72,13 @@ function App() {
     return (
         <div className="App">
             <div className="dkreg-wrapper">
-                <header>
-                    <div>
-                        <h1>
-                            <a href="/" title="Hjemmeside">
-                                <Logo title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo" className="dkreg-logo"/>
-                                <span>DK reg</span>
-                            </a>
-                        </h1>
-                    </div>
+                <header className="dkreg-header">
+                    <h1 className="dkreg-header__title">
+                        <a href="/" title="Hjemmeside">
+                            <Logo title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo" className="dkreg-header__logo" svgWidth="auto" svgHeight="150"/>
+                            <span>DK reg</span>
+                        </a>
+                    </h1>
                 </header>
                 <main>
                     <form onSubmit={handleSubmit(onFormSubmit)}>
