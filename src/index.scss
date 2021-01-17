@@ -13,6 +13,7 @@ $color-black: #000000;
 $color-gray-40: #666666;
 $color-gray-50: #808080;
 $color-link: #B23836;
+$color-alert: #B20300;
 
 $borderW: 2px;
 $numOfBlobs: 8;
@@ -156,7 +157,17 @@ code {
     }
   }
 
-  &__error {}
+  &__error {
+    font-size: 12px;
+    line-height: 22px;
+    color: $color-alert;
+
+    svg {
+      fill: $color-alert;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+  }
 
   &__with-icon {
     display: block;
@@ -185,6 +196,7 @@ code {
   padding: 0 8px;
   font-size: 12px;
   color: $color-gray-40;
+  position: absolute;
 
   strong {
     font-weight: 700;

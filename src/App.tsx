@@ -6,6 +6,11 @@ import Logo from "./assets/Logo";
 import './App.scss';
 import IconEye from "./assets/Icons/IconEye";
 import IconEyeClosed from "./assets/Icons/IconEyeClosed";
+import IconExclamationTriangle from "./assets/Icons/IconExclamationTriangle";
+import IconAmbulance from "./assets/Icons/IconAmbulance";
+import IconSmileyGrimace from "./assets/Icons/IconSmileyGrimace";
+import IconExclamation from "./assets/Icons/IconExclamation";
+import IconExclamationCircle from "./assets/Icons/IconExclamationCircle";
 
 interface IDOB {
     day: number;
@@ -105,8 +110,8 @@ function App() {
                                 </div>
                                 <div className="dkreg-form-block">
                                     <label htmlFor="nameLast" className="dkreg-form-block__label">{LanguageConstant.NAME_LAST}</label>
-                                    <input type="text" placeholder={LanguageConstant.NAME_LAST_PLACEHOLDER} name="nameLast" ref={register(formRefAttributes.email)} id="nameLast" className="dkreg-form-block__input"/>
-                                    <span className="dkreg-form-block__error">{errors.email && 'Look! There might be an issue here.'}</span>
+                                    <input type="text" placeholder={LanguageConstant.NAME_LAST_PLACEHOLDER} name="nameLast" ref={register(formRefAttributes.nameLast)} id="nameLast" className="dkreg-form-block__input"/>
+                                    <span className="dkreg-form-block__error">{errors.nameLast && 'Look! There might be an issue here.'}</span>
                                 </div>
                             </fieldset>
                             {/* Email */}
@@ -115,19 +120,19 @@ function App() {
                                 <div className="dkreg-form-block">
                                     <label htmlFor="TODO_SET_NAME" className="dkreg-form-block__label">{LanguageConstant.EMAIL}</label>
                                     <input type="text" placeholder={LanguageConstant.EMAIL_PLACEHOLDER} name="email" ref={register(formRefAttributes.email)} id="TODO_SET_NAME" className="dkreg-form-block__input"/>
-                                    <span className="dkreg-form-block__error">{errors.email && 'Look! There might be an issue here.'}</span>
+                                    <span className="dkreg-form-block__error"><IconExclamationCircle svgHeight="18"/>{errors.email && 'Look! There might be an issue here.'}</span>
                                 </div>
                                 <p className="dkreg-form-block-description">Du kan bruge bogstaver, tal og punktum.</p>
                             </fieldset>
                             {/* Password */}
                             <fieldset className="dkreg-form__group dkreg-form__group--password">
                                 <div className="dkreg-form-block">
-                                    <label htmlFor="TODO_SET_NAME" className="dkreg-form-block__label">{LanguageConstant.PASSWORD}</label>
+                                    <label htmlFor="password" className="dkreg-form-block__label">{LanguageConstant.PASSWORD}</label>
                                     <span className="dkreg-form-block__with-icon">
-                                        <input type="text" placeholder={LanguageConstant.PASSWORD} name="password" ref={register(formRefAttributes.email)} id="TODO_SET_NAME" className="dkreg-form-block__input"/>
+                                        <input type="password" placeholder={LanguageConstant.PASSWORD} name="password" ref={register(formRefAttributes.password)} id="password" className="dkreg-form-block__input"/>
                                         <span className="dkreg-form-block__with-icon--wrapper"><IconEyeClosed svgWidth="auto" svgHeight="22"/></span>
                                     </span>
-                                    <span className="dkreg-form-block__error">{errors.email && 'Look! There might be an issue here.'}</span>
+                                    <span className="dkreg-form-block__error">{errors.password && 'Look! There might be an issue here.'}</span>
                                 </div>
                                 <p className="dkreg-form-block-description">Brug <strong>{passMinLength}</strong> eller flere tegn med en blanding af bogstaver, tal og symboler.</p>
                             </fieldset>
