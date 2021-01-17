@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$color-primary: #F86E6C;
+$color-secondary: #009FB7;
+$color-alfa: #FED766;
+$color-alfa: #E6E6EA;
+$color-alfa: #F4F4F8;
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-gray-40: #666666;
+$color-link: #B23836;
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.dkreg {
+  &__side-panel {}
+}
+
+.dkreg-form {
+  padding-bottom: 30px;
+
+  &__group {
+    &--first-last {
+      display: flex;
+
+      .dkreg-form-block {
+        flex: 1 0 0;
+        padding-right: 8px;
+        justify-content: space-between;
+
+        &:last-child {
+          padding-right: 0;
+          padding-left: 8px;
+        }
+      }
+    }
+
+    &--email {
+      width: 80%;
+    }
+
+    &--password {
+      width: 60%;
+    }
+
+    &--controls {
+      display: flex;
+      margin-top: 30px;
+      justify-content: space-between;
+    }
+  }
+
+  &__submit-button {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 60px;
+    color: $color-white;
+    background: $color-primary;
+
+    &--reset {
+      font-weight: 400;
+      margin-right: 15px;
+      color: $color-link;
+      background: $color-white;
+    }
+
+    &:hover {
+      background: antiquewhite;
+    }
+  }
+}
+
+
+
+.dkreg-button-kit {
+  padding: 0 0 10px;
+}
+
+.dkreg-form-names {
+  flex: 1 1 45%;
+}
+
+.dkreg-form-block {
+  position: relative;
+  padding-bottom: 15px;
+
+  &__label {
+    color: #666666;
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0 0 5px 0;
+  }
+
+  &__input {
+    z-index: 50;
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 16px;
+    position: relative;
+    border-radius: 3px;
+    background: #F0EFF3;
+    letter-spacing: 0.04em;
+    border: 1px solid rgba(209, 213, 219, 0.25);
+  }
+
+  &__error {}
+}
