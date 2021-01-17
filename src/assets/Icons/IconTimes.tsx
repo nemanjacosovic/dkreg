@@ -1,12 +1,5 @@
 import React, {FunctionComponent} from 'react';
-
-interface ISVGProps {
-    title?: string;
-    description?: string;
-    className?: string;
-    svgWidth?: string;
-    svgHeight?: string;
-}
+import { ISVGProps } from '../../interfaces/CommonInterfaces';
 
 const IconTimes: FunctionComponent<ISVGProps> = (props) => {
     const {title, description, className, svgWidth, svgHeight} = props;

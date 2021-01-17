@@ -1,16 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import InputConstants, {LanguageConstant} from "./constants/CommonConstants";
+
 import Logo from "./assets/Logo";
+import Input from "./components/Input/Input";
 
 import './App.scss';
-import IconEye from "./assets/Icons/IconEye";
-import IconEyeClosed from "./assets/Icons/IconEyeClosed";
-import IconExclamationTriangle from "./assets/Icons/IconExclamationTriangle";
-import IconAmbulance from "./assets/Icons/IconAmbulance";
-import IconSmileyGrimace from "./assets/Icons/IconSmileyGrimace";
-import IconExclamation from "./assets/Icons/IconExclamation";
-import IconExclamationCircle from "./assets/Icons/IconExclamationCircle";
 
 interface IDOB {
     day: number;
@@ -80,19 +76,6 @@ function App() {
         newsletter: {}
     }
 
-    const LanguageConstant = {
-        NAME_FIRST: 'Fornavn',
-        NAME_FIRST_PLACEHOLDER: 'Harald',
-        NAME_LAST: 'Efternavn',
-        NAME_LAST_PLACEHOLDER: 'Holm',
-        EMAIL: 'E-mail',
-        EMAIL_PLACEHOLDER: 'henry.holm@email.dk',
-        PASSWORD: 'Kodeord',
-        PASSWORD_REPEAT: 'Gentag kodeord',
-        DATE_OF_BIRTH: 'Fødselsdato',
-        CREATE_ACCOUNT: 'Opret profil',
-    }
-
     return (
         <div className="dkreg">
             <main className="flex items-center min-h-screen p-4 lg:justify-center">
@@ -103,42 +86,55 @@ function App() {
                             {/* First and Last and Middle */}
                             <fieldset className="dkreg-form__group dkreg-form__group--first-last">
                                 {/*<legend>Basic info:</legend>*/}
-                                <div className="dkreg-form-block">
-                                    <label htmlFor="nameFirst" className="dkreg-form-block__label">{LanguageConstant.NAME_FIRST}</label>
-                                    <input type="text" placeholder={LanguageConstant.NAME_FIRST_PLACEHOLDER} name="nameFirst" ref={register(formRefAttributes.nameFirst)} id="nameFirst" className="dkreg-form-block__input"/>
-                                    <span className="dkreg-form-block__error">{errors.nameFirst && 'Look! There might be an issue here.'}</span>
-                                </div>
-                                <div className="dkreg-form-block">
-                                    <label htmlFor="nameLast" className="dkreg-form-block__label">{LanguageConstant.NAME_LAST}</label>
-                                    <input type="text" placeholder={LanguageConstant.NAME_LAST_PLACEHOLDER} name="nameLast" ref={register(formRefAttributes.nameLast)} id="nameLast" className="dkreg-form-block__input"/>
-                                    <span className="dkreg-form-block__error">{errors.nameLast && 'Look! There might be an issue here.'}</span>
-                                </div>
+                                <Input
+                                    className='input-name-first'
+                                    labelText={LanguageConstant.NAME_FIRST}
+                                    inputId='nameFirst'
+                                    inputType={InputConstants.TEXT}
+                                    inputName='nameFirst'
+                                    placeholderText={LanguageConstant.NAME_FIRST_PLACEHOLDER}
+                                    inputRef={register(formRefAttributes.nameFirst)}
+                                />
+                                <Input
+                                    className='input-name-last'
+                                    labelText={LanguageConstant.NAME_LAST}
+                                    inputId='nameLast'
+                                    inputType={InputConstants.TEXT}
+                                    inputName='nameLast'
+                                    placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
+                                    inputRef={register(formRefAttributes.nameLast)}
+                                />
                             </fieldset>
                             {/* Email */}
                             <fieldset className="dkreg-form__group dkreg-form__group--email">
                                 {/*<legend>Email:</legend>*/}
-                                <div className="dkreg-form-block">
-                                    <label htmlFor="TODO_SET_NAME" className="dkreg-form-block__label">{LanguageConstant.EMAIL}</label>
-                                    <input type="text" placeholder={LanguageConstant.EMAIL_PLACEHOLDER} name="email" ref={register(formRefAttributes.email)} id="TODO_SET_NAME" className="dkreg-form-block__input"/>
-                                    <span className="dkreg-form-block__error"><IconExclamationCircle svgHeight="18"/>{errors.email && 'Look! There might be an issue here.'}</span>
-                                </div>
-                                <p className="dkreg-form-block-description">Du kan bruge bogstaver, tal og punktum.</p>
+                                <Input
+                                    className='input-email'
+                                    labelText={LanguageConstant.NAME_LAST}
+                                    inputId='email'
+                                    inputType={InputConstants.EMAIL}
+                                    inputName='email'
+                                    inputHint={LanguageConstant.EMAIL_HINT}
+                                    placeholderText={LanguageConstant.EMAIL_PLACEHOLDER}
+                                    inputRef={register(formRefAttributes.email)}
+                                />
                             </fieldset>
                             {/* Password */}
                             <fieldset className="dkreg-form__group dkreg-form__group--password">
-                                <div className="dkreg-form-block">
-                                    <label htmlFor="password" className="dkreg-form-block__label">{LanguageConstant.PASSWORD}</label>
-                                    <span className="dkreg-form-block__with-icon">
-                                        <input type="password" placeholder={LanguageConstant.PASSWORD} name="password" ref={register(formRefAttributes.password)} id="password" className="dkreg-form-block__input"/>
-                                        <span className="dkreg-form-block__with-icon--wrapper"><IconEyeClosed svgWidth="auto" svgHeight="22"/></span>
-                                    </span>
-                                    <span className="dkreg-form-block__error">{errors.password && 'Look! There might be an issue here.'}</span>
-                                </div>
-                                <p className="dkreg-form-block-description">Brug <strong>{passMinLength}</strong> eller flere tegn med en blanding af bogstaver, tal og symboler.</p>
+                                <Input
+                                    className='input-password'
+                                    labelText={LanguageConstant.PASSWORD}
+                                    inputId='password'
+                                    inputType={InputConstants.PASSWORD}
+                                    inputName='password'
+                                    inputHint={LanguageConstant.PASSWORD_HINT}
+                                    placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
+                                    inputRef={register(formRefAttributes.password)}
+                                />
                             </fieldset>
                             <div className="dkreg-form__group dkreg-form__group--controls">
-                                <button type="reset" className="dkreg-form__submit-button dkreg-form__submit-button--reset rounded-md">Nulstil</button>
-                                <button type="submit" className="dkreg-form__submit-button rounded-md shadow-lg">Opret profil</button>
+                                <button type="reset" className="dkreg-form__submit-button dkreg-form__submit-button--reset rounded-md">{LanguageConstant.FORM_RESET}</button>
+                                <button type="submit" className="dkreg-form__submit-button rounded-md shadow-lg">{LanguageConstant.FORM_SUBMIT}</button>
                             </div>
                         </form>
                     </div>
