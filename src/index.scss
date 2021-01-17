@@ -5,8 +5,8 @@
 $color-primary: #F86E6C;
 $color-secondary: #009FB7;
 $color-alfa: #FED766;
-$color-alfa: #E6E6EA;
-$color-alfa: #F4F4F8;
+$color-beta: #f0eff3;
+$color-gama: #F4F4F8;
 $color-white: #FFFFFF;
 $color-black: #000000;
 $color-gray-40: #666666;
@@ -114,9 +114,22 @@ code {
     padding: 8px 16px;
     position: relative;
     border-radius: 3px;
-    background: #F0EFF3;
     letter-spacing: 0.04em;
+    background: $color-beta;
+    transition: all ease-out 300ms;
     border: 1px solid rgba(209, 213, 219, 0.25);
+
+    &:hover {
+      background: $color-gama;
+    }
+    &:visited {}
+    &:active {}
+    &:focus {
+      outline: none;
+      background: $color-gama;
+      border: 1px solid $color-primary;
+      box-shadow: inset 0 0 0 1px $color-primary, 0 5px 10px 0 $color-beta;
+    }
   }
 
   &__error {}
