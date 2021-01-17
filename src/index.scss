@@ -81,7 +81,7 @@ code {
     padding: 10px 60px;
     position: relative;
     color: $color-white;
-    transition: all ease-out 300ms;
+    transition: all ease-out 100ms;
     background: $color-primary;
 
     &:hover {
@@ -140,7 +140,7 @@ code {
     border-radius: 3px;
     letter-spacing: 0.04em;
     background: $color-beta;
-    transition: all ease-out 300ms;
+    transition: all ease-out 250ms;
     border: 1px solid rgba(209, 213, 219, 0.25);
 
     &:hover {

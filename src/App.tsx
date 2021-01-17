@@ -94,7 +94,7 @@ function App() {
                 <div className="flex flex-col overflow-hidden rounded-3xl shadow-xl max md:flex-row md:flex-1 lg:max-w-screen-md">
                     <div className="p-5 bg-white md:flex-1">
                         <h1 className="text-2xl font-semibold pb-5">Tilmelde</h1>
-                        <form className="dkreg-form">
+                        <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
                             {/* First and Last and Middle */}
                             <fieldset className="dkreg-form__group dkreg-form__group--first-last">
                                 {/*<legend>Basic info:</legend>*/}
@@ -117,6 +117,7 @@ function App() {
                                     <input type="text" placeholder={LanguageConstant.EMAIL_PLACEHOLDER} name="email" ref={register(formRefAttributes.email)} id="TODO_SET_NAME" className="dkreg-form-block__input"/>
                                     <span className="dkreg-form-block__error">{errors.email && 'Look! There might be an issue here.'}</span>
                                 </div>
+                                <p className="dkreg-form-block-description">Du kan bruge bogstaver, tal og punktum.</p>
                             </fieldset>
                             {/* Password */}
                             <fieldset className="dkreg-form__group dkreg-form__group--password">
