@@ -83,53 +83,52 @@ function App() {
                     <div className="p-5 bg-white md:flex-1">
                         <h1 className="text-2xl font-semibold pb-5">Tilmelde</h1>
                         <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
-                            {/* First and Last and Middle */}
                             <fieldset className="dkreg-form__group dkreg-form__group--first-last">
-                                {/*<legend>Basic info:</legend>*/}
                                 <Input
                                     className='input-name-first'
-                                    labelText={LanguageConstant.NAME_FIRST}
+                                    inputError={errors.nameFirst}
                                     inputId='nameFirst'
-                                    inputType={InputConstants.TEXT}
                                     inputName='nameFirst'
-                                    placeholderText={LanguageConstant.NAME_FIRST_PLACEHOLDER}
                                     inputRef={register(formRefAttributes.nameFirst)}
+                                    inputType={InputConstants.TEXT}
+                                    labelText={LanguageConstant.NAME_FIRST}
+                                    placeholderText={LanguageConstant.NAME_FIRST_PLACEHOLDER}
                                 />
                                 <Input
                                     className='input-name-last'
-                                    labelText={LanguageConstant.NAME_LAST}
+                                    inputError={errors.nameLast}
                                     inputId='nameLast'
-                                    inputType={InputConstants.TEXT}
                                     inputName='nameLast'
-                                    placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
                                     inputRef={register(formRefAttributes.nameLast)}
+                                    inputType={InputConstants.TEXT}
+                                    labelText={LanguageConstant.NAME_LAST}
+                                    placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
                                 />
                             </fieldset>
-                            {/* Email */}
                             <fieldset className="dkreg-form__group dkreg-form__group--email">
-                                {/*<legend>Email:</legend>*/}
                                 <Input
                                     className='input-email'
-                                    labelText={LanguageConstant.NAME_LAST}
-                                    inputId='email'
-                                    inputType={InputConstants.EMAIL}
-                                    inputName='email'
+                                    inputError={errors.email}
                                     inputHint={LanguageConstant.EMAIL_HINT}
-                                    placeholderText={LanguageConstant.EMAIL_PLACEHOLDER}
+                                    inputId='email'
+                                    inputName='email'
                                     inputRef={register(formRefAttributes.email)}
+                                    inputType={InputConstants.EMAIL}
+                                    labelText={LanguageConstant.NAME_LAST}
+                                    placeholderText={LanguageConstant.EMAIL_PLACEHOLDER}
                                 />
                             </fieldset>
-                            {/* Password */}
                             <fieldset className="dkreg-form__group dkreg-form__group--password">
                                 <Input
                                     className='input-password'
-                                    labelText={LanguageConstant.PASSWORD}
-                                    inputId='password'
-                                    inputType={InputConstants.PASSWORD}
-                                    inputName='password'
+                                    inputError={errors.password}
                                     inputHint={LanguageConstant.PASSWORD_HINT}
-                                    placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
+                                    inputId='password'
+                                    inputName='password'
                                     inputRef={register(formRefAttributes.password)}
+                                    inputType={InputConstants.PASSWORD}
+                                    labelText={LanguageConstant.PASSWORD}
+                                    placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
                                 />
                             </fieldset>
                             <div className="dkreg-form__group dkreg-form__group--controls">

@@ -87,7 +87,6 @@ class Input extends PureComponent<IInputProps<HTMLInputElement>, State> {
 
     _renderInputHint = () => {
         const { inputHint } = this.props;
-        console.log('inputHint', inputHint);
 
         if (!inputHint) {
             return null;
