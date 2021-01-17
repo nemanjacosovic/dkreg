@@ -5,6 +5,7 @@ import Logo from "./assets/Logo";
 
 import './App.scss';
 import IconEye from "./assets/Icons/IconEye";
+import IconEyeClosed from "./assets/Icons/IconEyeClosed";
 
 interface IDOB {
     day: number;
@@ -123,11 +124,11 @@ function App() {
                                     <label htmlFor="TODO_SET_NAME" className="dkreg-form-block__label">{LanguageConstant.PASSWORD}</label>
                                     <span className="dkreg-form-block__with-icon">
                                         <input type="text" placeholder={LanguageConstant.PASSWORD} name="password" ref={register(formRefAttributes.email)} id="TODO_SET_NAME" className="dkreg-form-block__input"/>
-                                        <span className="dkreg-form-block__with-icon--wrapper"><IconEye/></span>
+                                        <span className="dkreg-form-block__with-icon--wrapper"><IconEyeClosed svgWidth="auto" svgHeight="22"/></span>
                                     </span>
                                     <span className="dkreg-form-block__error">{errors.email && 'Look! There might be an issue here.'}</span>
                                 </div>
-                                <p>Brug {passMinLength} eller flere tegn med en blanding af bogstaver, tal og symboler</p>
+                                <p className="dkreg-form-block-description">Brug <strong>{passMinLength}</strong> eller flere tegn med en blanding af bogstaver, tal og symboler.</p>
                             </fieldset>
                             <div className="dkreg-form__group dkreg-form__group--controls">
                                 <button type="reset" className="dkreg-form__submit-button dkreg-form__submit-button--reset rounded-md">Nulstil</button>
