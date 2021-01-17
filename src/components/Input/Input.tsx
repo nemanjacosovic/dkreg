@@ -92,7 +92,7 @@ class Input extends PureComponent<IInputProps<HTMLInputElement>, State> {
             return null;
         }
         return (
-            <span className="dkreg-form-block__helper--hint">Du kan bruge bogstaver, tal og punktum.</span>
+            <span className="dkreg-form-block__helper--hint">{inputHint}</span>
         )
     };
 

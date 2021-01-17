@@ -1,10 +1,11 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 
-import InputConstants, {LanguageConstant} from "./constants/CommonConstants";
+import InputConstants, {ButtonStyle, ButtonType, LanguageConstant} from "./constants/CommonConstants";
 
 import Logo from "./assets/Logo";
 import Input from "./components/Input/Input";
+import Button from "./components/Button/Button";
 
 import './App.scss';
 
@@ -132,8 +133,16 @@ function App() {
                                 />
                             </fieldset>
                             <div className="dkreg-form__group dkreg-form__group--controls">
-                                <button type="reset" className="dkreg-form__submit-button dkreg-form__submit-button--reset rounded-md">{LanguageConstant.FORM_RESET}</button>
-                                <button type="submit" className="dkreg-form__submit-button rounded-md shadow-lg">{LanguageConstant.FORM_SUBMIT}</button>
+                                <Button
+                                    btnStyle={ButtonStyle.OUTLINE}
+                                    type={ButtonType.RESET}
+                                    label={LanguageConstant.FORM_RESET}
+                                />
+                                <Button
+                                    btnStyle={ButtonStyle.PRIMARY}
+                                    type={ButtonType.SUBMIT}
+                                    label={LanguageConstant.FORM_RESET}
+                                />
                             </div>
                         </form>
                     </div>

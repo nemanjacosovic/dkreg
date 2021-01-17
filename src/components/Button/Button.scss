@@ -1,0 +1,46 @@
+@import "src/constants/colors.module";
+
+.dkreg-form-controls {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+.dkreg-form-button {
+  z-index: 500;
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 10px 60px;
+  position: relative;
+  border-radius: 6px;
+  transition: all ease-out 100ms;
+
+  &:focus {
+    outline: none;
+  }
+
+  &__primary {
+    color: $color-white;
+    background: $color-primary;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+  }
+
+  &__secondary {}
+
+  &__outline {
+    font-weight: 400;
+    color: $color-link;
+    background: $color-white;
+
+    &:hover {
+      color: $color-link;
+      background: $color-white;
+      box-shadow: inset 0 0 0 2px $color-primary;
+    }
+  }
+}

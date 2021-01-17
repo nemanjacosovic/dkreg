@@ -1,3 +1,15 @@
+export enum ButtonType {
+    BUTTON = 'button',
+    SUBMIT = 'submit',
+    RESET = 'reset'
+}
+
+export enum ButtonStyle {
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    OUTLINE = 'outline'
+}
+
 const InputConstants = {
     PASSWORD: 'password',
     TEXT: 'text',
@@ -32,7 +44,7 @@ export const LanguageConstant = {
     DATE_OF_BIRTH: 'Fødselsdato',
 
     FORM_RESET: 'Nulstil',
-    FORM_SUBMIT: 'Opret profil',
+    FORM_SUBMIT: 'Opret profil'
 }
 
 export default InputConstants;

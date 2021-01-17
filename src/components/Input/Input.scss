@@ -68,8 +68,9 @@
 
   &__helper {
     &--hint {
-      padding: 0 8px;
+      display: block;
       font-size: 11px;
+      padding: 5px 8px 0;
       color: $color-gray-40;
 
       strong {
