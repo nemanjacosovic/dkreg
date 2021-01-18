@@ -99,29 +99,32 @@ class Input extends PureComponent<IInputProps<HTMLInputElement>, State> {
     _renderInputError = () => {
         const { inputError } = this.props;
 
-        if (!inputError) {
+        if (!inputError?.message) {
             return null;
         }
 
         return (
             <span className="dkreg-form-block__helper--error">
                 <IconExclamationCircle svgHeight="18"/>
-                {inputError}
+                {inputError?.message}
             </span>
         );
     };
 
     _renderHintOrError = () => {
-        const isError = false;
+        const { inputError } = this.props;
+
         return (
             <div className="dkreg-form-block__helper">
-                {isError ? this._renderInputError() : this._renderInputHint()}
+                {inputError?.message ? this._renderInputError() : this._renderInputHint()}
             </div>
         );
     };
 
     render() {
         const {className} = this.props;
+
+        console.log(this.props.inputError);
 
         return (
             <div className={`dkreg-form-block${className ? ' dkreg-form-block--' + className : ''}`}>

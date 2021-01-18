@@ -31,50 +31,57 @@ interface IRegForm {
     newsletter?: boolean;
 }
 
-function App() {
-    const {register, handleSubmit, errors} = useForm();
+interface FormValues {
+    nameFirst: string;
+    nameLast: string;
+    email: string;
+    password: string;
+}
 
+const defaultValues = {
+    nameFirst: undefined,
+    nameLast: undefined,
+    email: undefined,
+    password: undefined
+};
+
+function App() {
+    const {register, handleSubmit, reset, errors} = useForm<FormValues>({defaultValues});
     const onFormSubmit = (data: IRegForm) => {
         console.log(data);
     };
+    const _resetForm = () => reset(defaultValues);
 
     const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-    const currentYear = new Date().getFullYear();
-    const passMinLength = 10;
 
     const formRefAttributes = {
-        accountType: {},
         nameFirst: {
-            required: true,
-            pattern: regexName
+            required: LanguageConstant.NAME_FIRST_ERROR_REQUIRED,
+            pattern: regexName,
+            minLength: {
+                value: 2,
+                message: LanguageConstant.NAME_FIRST_ERROR_LENGTH
+            }
         },
         nameLast: {
-            required: true,
-            pattern: regexName
-        },
-        nameMiddle: {
-            required: true,
-            pattern: regexName
+            required: LanguageConstant.NAME_LAST_ERROR_REQUIRED,
+            pattern: regexName,
+            minLength: {
+                value: 2,
+                message: LanguageConstant.NAME_LAST_ERROR_LENGTH
+            }
         },
         email: {
-            required: true,
+            required: LanguageConstant.EMAIL_ERROR_REQUIRED,
             pattern: /^\S+@\S+\.\S+$/
         },
         password: {
-            required: true,
-            minLength: passMinLength
-        },
-        passwordRepeat: {},
-        dateOfBirth: {
-            day: { min: 1, max: 31 }, // new Date(2020, 0, 0).getDate()
-            month: { min: 1, max: 12 },
-            year: { min: currentYear - 99 , max: currentYear - 16 }
-        },
-        postCode: {},
-        streetName: {},
-        termsOfService: {},
-        gdprConsent: {},
-        newsletter: {}
+            required: LanguageConstant.PASSWORD_ERROR_REQUIRED,
+            minLength: {
+                value: 10,
+                message: LanguageConstant.PASSWORD_ERROR_LENGTH
+            }
+        }
     }
 
     return (
@@ -137,6 +144,7 @@ function App() {
                                     btnStyle={ButtonStyle.OUTLINE}
                                     type={ButtonType.RESET}
                                     label={LanguageConstant.FORM_RESET}
+                                    onClick={() => _resetForm()}
                                 />
                                 <Button
                                     btnStyle={ButtonStyle.PRIMARY}

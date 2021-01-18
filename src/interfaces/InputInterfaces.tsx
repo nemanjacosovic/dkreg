@@ -6,7 +6,7 @@ export interface IInputProps<T extends HTMLInputElement> {
     error?: any;
     inputClassName?: string;
     inputConfig?: any;
-    inputError?: string;
+    inputError?: any;
     inputHint?: string;
     inputId?: string;
     inputName?: string;
