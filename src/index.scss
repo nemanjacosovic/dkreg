@@ -26,73 +26,52 @@ code {
   padding-bottom: 30px;
 
   &__group {
-    &--first-last {
-      display: flex;
+    @media screen and (min-width : 768px) {
+      &--first-last {
+        display: flex;
 
-      .dkreg-form-block {
-        flex: 1 0 0;
-        padding-right: 8px;
-        justify-content: space-between;
+        .dkreg-form-block {
+          flex: 1 0 0;
+          padding-right: 8px;
+          justify-content: space-between;
 
-        &:last-child {
-          padding-right: 0;
-          padding-left: 8px;
+          &:last-child {
+            padding-right: 0;
+            padding-left: 8px;
+          }
         }
       }
     }
 
     &--email {
-      width: 80%;
+      @media screen and (min-width : 768px) {
+        width: 80%;
+      }
     }
 
     &--password {
-      width: 60%;
-    }
-  }
-
-  &__submit-button {
-    z-index: 500;
-    font-size: 13px;
-    font-weight: 600;
-    overflow: hidden;
-    padding: 10px 60px;
-    position: relative;
-    color: $color-white;
-    transition: all ease-out 100ms;
-    background: $color-primary;
-
-    &:hover {
-      background: $color-primary-hover;
-
-      &:after {}
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &--reset {
-      font-weight: 400;
-      margin-right: 15px;
-      color: $color-link;
-      background: $color-white;
-
-      &:hover {
-        color: $color-link;
-        background: $color-white;
-        box-shadow: inset 0 0 0 2px $color-primary;
+      @media screen and (min-width : 768px) {
+        width: 60%;
       }
     }
   }
 }
 
 footer {
-  left: 50%;
-  bottom: 0;
-  font-size: 10px;
+  @media screen and (min-width : 768px) {
+    left: 50%;
+    bottom: 0;
+    font-size: 10px;
+    position: fixed;
+    padding-bottom: 0;
+    transform: translate3d(-50%, -10px, 0);
+  }
+
+  display: block;
+  font-size: 12px;
   font-weight: 700;
-  position: absolute;
+  text-align: center;
   color: $color-white;
-  transform: translate3d(-50%, -10px, 0);
-  text-shadow: -1px -1px 1px $color-link;
+  padding-bottom: 15px;
+  text-shadow: 0 1px 3px $color-link;
 }

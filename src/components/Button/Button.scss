@@ -7,11 +7,15 @@
 }
 
 .dkreg-form-button {
+  @media screen and (min-width : 768px) {
+    padding: 10px 60px;
+  }
+
   z-index: 500;
   font-size: 13px;
   font-weight: 600;
   overflow: hidden;
-  padding: 10px 60px;
+  padding: 10px 30px;
   position: relative;
   border-radius: 6px;
   transition: all ease-out 100ms;
