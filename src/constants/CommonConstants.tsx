@@ -53,11 +53,13 @@ export const LanguageConstant = {
 
     DATE_OF_BIRTH: 'Fødselsdato',
 
+    SIGN_UP: 'Tilmelde',
+
     FORM_RESET: 'Nulstil',
     FORM_SUBMIT: 'Opret profil',
 
     GREAT_WORK: 'Fantastisk arbejde',
-    CHECK_YOUR_INBOX: 'Se din indbakke!'
+    CHECK_YOUR_INBOX: 'se din indbakke'
 }
 
 export default InputConstants;

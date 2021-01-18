@@ -23,6 +23,10 @@ code {
   &__side-panel {}
 }
 
+main {
+  transition: all 500ms ease-in-out;
+}
+
 .dkreg-form {
   padding-bottom: 30px;
 
@@ -67,6 +71,39 @@ code {
   width: auto;
   height: 84px;
   margin: 0 auto;
+}
+
+.dkreg-success {
+  padding: 60px 0;
+  text-align: center;
+
+  & img {
+    width: 38%;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  & h2 {
+    @media screen and (min-width : 768px) {
+      width: 75%;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    color: $color-primary-hover;
+  }
+
+  & p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    padding-top: 15px;
+    color: $color-gray-40;
+  }
 }
 
 footer {

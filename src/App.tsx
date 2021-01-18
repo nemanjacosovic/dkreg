@@ -3,9 +3,11 @@ import {useForm} from 'react-hook-form';
 
 import InputConstants, {ButtonStyle, ButtonType, LanguageConstant} from "./constants/CommonConstants";
 
-import Logo from "./assets/Logo";
 import Button from "./components/Button/Button";
 import Input from "./components/Input/Input";
+
+import Cake from "./assets/cake-original.jpg";
+import Logo from "./assets/Logo";
 
 import './App.scss';
 
@@ -16,13 +18,13 @@ interface IDOB {
 }
 
 interface IRegForm {
-    accountType: string;
+    accountType?: string;
     nameFirst: string;
-    nameLast?: string;
+    nameLast: string;
     nameMiddle?: string;
     email: string;
     password: string;
-    passwordRepeat: string;
+    passwordRepeat?: string;
     dateOfBirth?: IDOB;
     postCode?: string;
     streetName?: string;
@@ -39,31 +41,118 @@ interface FormValues {
 }
 
 const defaultValues = {
-    nameFirst: undefined,
-    nameLast: undefined,
-    email: undefined,
-    password: undefined
+    nameFirst: '',
+    nameLast: '',
+    email: '',
+    password: ''
 };
 
 function App() {
     const [isFormLoading, setIsFormLoading] = useState(false);
+    const [formData, setFormData] = useState<FormValues>(defaultValues);
+    const [isFormCompleted, setIsFormCompleted] = useState(false);
     const {register, handleSubmit, reset, errors} = useForm<FormValues>({defaultValues});
 
     const onFormSubmit = (data: IRegForm) => {
         setIsFormLoading(true);
+        setFormData(data);
 
         setTimeout(() => {
-            console.log(data);
+            setIsFormCompleted(true)
         }, 1500);
-
-        // set loading for 1.5 sec
-        // fade out form 300 ms
-        // fade in cake and congrats 300 ms
     };
 
     const _resetForm = () => reset(defaultValues);
 
-    const _successRender = () => {};
+    const _renderForm = () => {
+        if (isFormCompleted) {
+            return null
+        }
+
+        return (
+            <>
+                <h1 className="text-2xl font-semibold pb-5">{LanguageConstant.SIGN_UP}</h1>
+                <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
+                    <fieldset className="dkreg-form__group dkreg-form__group--first-last">
+                        <Input
+                            className='input-name-first'
+                            inputError={errors.nameFirst}
+                            inputId='nameFirst'
+                            inputName='nameFirst'
+                            inputRef={register(formRefAttributes.nameFirst)}
+                            inputType={InputConstants.TEXT}
+                            labelText={LanguageConstant.NAME_FIRST}
+                            placeholderText={LanguageConstant.NAME_FIRST_PLACEHOLDER}
+                        />
+                        <Input
+                            className='input-name-last'
+                            inputError={errors.nameLast}
+                            inputId='nameLast'
+                            inputName='nameLast'
+                            inputRef={register(formRefAttributes.nameLast)}
+                            inputType={InputConstants.TEXT}
+                            labelText={LanguageConstant.NAME_LAST}
+                            placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
+                        />
+                    </fieldset>
+                    <fieldset className="dkreg-form__group dkreg-form__group--email">
+                        <Input
+                            className='input-email'
+                            inputError={errors.email}
+                            inputHint={LanguageConstant.EMAIL_HINT}
+                            inputId='email'
+                            inputName='email'
+                            inputRef={register(formRefAttributes.email)}
+                            inputType={InputConstants.EMAIL}
+                            labelText={LanguageConstant.NAME_LAST}
+                            placeholderText={LanguageConstant.EMAIL_PLACEHOLDER}
+                        />
+                    </fieldset>
+                    <fieldset className="dkreg-form__group dkreg-form__group--password">
+                        <Input
+                            className='input-password'
+                            inputError={errors.password}
+                            inputHint={LanguageConstant.PASSWORD_HINT}
+                            inputId='password'
+                            inputName='password'
+                            inputRef={register(formRefAttributes.password)}
+                            inputType={InputConstants.PASSWORD}
+                            labelText={LanguageConstant.PASSWORD}
+                            placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
+                        />
+                    </fieldset>
+                    <div className="dkreg-form-controls">
+                        <Button
+                            btnStyle={ButtonStyle.OUTLINE}
+                            type={ButtonType.RESET}
+                            label={LanguageConstant.FORM_RESET}
+                            onClick={() => _resetForm()}
+                        />
+                        <Button
+                            btnStyle={ButtonStyle.PRIMARY}
+                            type={ButtonType.SUBMIT}
+                            label={LanguageConstant.FORM_SUBMIT}
+                            loading={isFormLoading}
+                        />
+                    </div>
+                </form>
+            </>
+        )
+    };
+
+    const _successRender = () => {
+        if (!isFormCompleted) {
+            return null
+        }
+
+        return (
+            <div className="dkreg-success">
+                <img src={Cake} alt={LanguageConstant.SIGN_UP} title={LanguageConstant.SIGN_UP}/>
+                <h2>{LanguageConstant.GREAT_WORK} {formData?.nameFirst}!</h2>
+                <p>{LanguageConstant.CHECK_YOUR_INBOX}</p>
+            </div>
+        )
+    };
 
     const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
@@ -102,71 +191,7 @@ function App() {
             <main className="flex items-center min-h-screen p-4 lg:justify-center">
                 <div className="flex flex-col overflow-hidden rounded-3xl shadow-xl max md:flex-row md:flex-1 lg:max-w-screen-md">
                     <div className="p-5 bg-white order-last md:order-first md:flex-1">
-                        <h1 className="text-2xl font-semibold pb-5">Tilmelde</h1>
-                        <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
-                            <fieldset className="dkreg-form__group dkreg-form__group--first-last">
-                                <Input
-                                    className='input-name-first'
-                                    inputError={errors.nameFirst}
-                                    inputId='nameFirst'
-                                    inputName='nameFirst'
-                                    inputRef={register(formRefAttributes.nameFirst)}
-                                    inputType={InputConstants.TEXT}
-                                    labelText={LanguageConstant.NAME_FIRST}
-                                    placeholderText={LanguageConstant.NAME_FIRST_PLACEHOLDER}
-                                />
-                                <Input
-                                    className='input-name-last'
-                                    inputError={errors.nameLast}
-                                    inputId='nameLast'
-                                    inputName='nameLast'
-                                    inputRef={register(formRefAttributes.nameLast)}
-                                    inputType={InputConstants.TEXT}
-                                    labelText={LanguageConstant.NAME_LAST}
-                                    placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
-                                />
-                            </fieldset>
-                            <fieldset className="dkreg-form__group dkreg-form__group--email">
-                                <Input
-                                    className='input-email'
-                                    inputError={errors.email}
-                                    inputHint={LanguageConstant.EMAIL_HINT}
-                                    inputId='email'
-                                    inputName='email'
-                                    inputRef={register(formRefAttributes.email)}
-                                    inputType={InputConstants.EMAIL}
-                                    labelText={LanguageConstant.NAME_LAST}
-                                    placeholderText={LanguageConstant.EMAIL_PLACEHOLDER}
-                                />
-                            </fieldset>
-                            <fieldset className="dkreg-form__group dkreg-form__group--password">
-                                <Input
-                                    className='input-password'
-                                    inputError={errors.password}
-                                    inputHint={LanguageConstant.PASSWORD_HINT}
-                                    inputId='password'
-                                    inputName='password'
-                                    inputRef={register(formRefAttributes.password)}
-                                    inputType={InputConstants.PASSWORD}
-                                    labelText={LanguageConstant.PASSWORD}
-                                    placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
-                                />
-                            </fieldset>
-                            <div className="dkreg-form-controls">
-                                <Button
-                                    btnStyle={ButtonStyle.OUTLINE}
-                                    type={ButtonType.RESET}
-                                    label={LanguageConstant.FORM_RESET}
-                                    onClick={() => _resetForm()}
-                                />
-                                <Button
-                                    btnStyle={ButtonStyle.PRIMARY}
-                                    type={ButtonType.SUBMIT}
-                                    label={LanguageConstant.FORM_SUBMIT}
-                                    loading={isFormLoading}
-                                />
-                            </div>
-                        </form>
+                        {_renderForm()}
                         {_successRender()}
                     </div>
                     <div className="p-4 py-6 order-first md:order-last text-white bg-white bg-opacity-70 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly" style={{backdropFilter: 'blur(6px)'}}>
