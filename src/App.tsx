@@ -105,7 +105,6 @@ function App() {
     }
 
     useEffect(() => {
-        console.log('useEffect');
         if (isPostalCodeValid && isCityValid) {
             // Timeout just to see the animation
             setTimeout(() => {
@@ -144,8 +143,6 @@ function App() {
 
         const dataCityInfo = await response.json();
 
-        console.log(dataCityInfo);
-
         setDataCity(dataCityInfo[0]);
         setIsCityValid(true);
     };
@@ -167,7 +164,8 @@ function App() {
 
         return (
             <>
-                <h1 className="text-2xl font-semibold pb-5">{LanguageConstant.SIGN_UP}</h1>
+                <h1 className="text-2xl font-semibold">{LanguageConstant.SIGN_UP}</h1>
+                <h3 className="text-xs pb-5">{LanguageConstant.FILL_IN_THE_DETAILS}</h3>
                 <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
                     <fieldset className="dkreg-form__group dkreg-form__group--first-last">
                         <Input

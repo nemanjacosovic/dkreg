@@ -36,7 +36,7 @@ export const LanguageConstant = {
     NAME_LAST_PLACEHOLDER: 'Holm',
 
     CITY: 'By',
-    CITY_HINT: '2200',
+    CITY_HINT: '',
     CITY_ERROR: InputConstants.ERROR_TEXT,
     CITY_ERROR_REQUIRED: InputConstants.ERROR_TEXT_REQUIRED,
     CITY_ERROR_LENGTH: InputConstants.ERROR_TEXT_LENGTH,
@@ -44,10 +44,10 @@ export const LanguageConstant = {
 
     POSTAL_CODE: 'Postnummer',
     POSTAL_CODE_HINT: '',
-    POSTAL_CODE_ERROR: 'Postnummer',
-    POSTAL_CODE_ERROR_REQUIRED: 'Postnummer',
-    POSTAL_CODE_ERROR_LENGTH: 'Postnummer',
-    POSTAL_CODE_PLACEHOLDER: 'Postnummer',
+    POSTAL_CODE_ERROR: InputConstants.ERROR_TEXT,
+    POSTAL_CODE_ERROR_REQUIRED: InputConstants.ERROR_TEXT_REQUIRED,
+    POSTAL_CODE_ERROR_LENGTH: InputConstants.ERROR_TEXT_LENGTH,
+    POSTAL_CODE_PLACEHOLDER: '22000',
 
     EMAIL: 'E-mail',
     EMAIL_HINT: 'Du kan bruge bogstaver, tal og punktum',
@@ -68,6 +68,7 @@ export const LanguageConstant = {
     DATE_OF_BIRTH: 'Fødselsdato',
 
     SIGN_UP: 'Tilmelde',
+    FILL_IN_THE_DETAILS: 'Udfyld detaljerne',
 
     FORM_RESET: 'Nulstil',
     FORM_SUBMIT: 'Opret profil',
