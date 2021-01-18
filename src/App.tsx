@@ -149,7 +149,7 @@ function App() {
                                 <Button
                                     btnStyle={ButtonStyle.PRIMARY}
                                     type={ButtonType.SUBMIT}
-                                    label={LanguageConstant.FORM_RESET}
+                                    label={LanguageConstant.FORM_SUBMIT}
                                 />
                             </div>
                         </form>

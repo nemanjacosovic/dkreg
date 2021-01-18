@@ -124,8 +124,6 @@ class Input extends PureComponent<IInputProps<HTMLInputElement>, State> {
     render() {
         const {className} = this.props;
 
-        console.log(this.props.inputError);
-
         return (
             <div className={`dkreg-form-block${className ? ' dkreg-form-block--' + className : ''}`}>
                 {this._renderLabel()}

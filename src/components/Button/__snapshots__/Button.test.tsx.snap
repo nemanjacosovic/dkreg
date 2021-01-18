@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<button
+  className="dkreg-form-button dkreg-form-button__primary"
+  onClick={[Function]}
+  type="submit"
+>
+  <span>
+    Opret profil
+  </span>
+</button>
+`;
