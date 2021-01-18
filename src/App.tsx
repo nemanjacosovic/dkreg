@@ -132,7 +132,7 @@ function App() {
                                     placeholderText={LanguageConstant.PASSWORD_PLACEHOLDER}
                                 />
                             </fieldset>
-                            <div className="dkreg-form__group dkreg-form__group--controls">
+                            <div className="dkreg-form-controls">
                                 <Button
                                     btnStyle={ButtonStyle.OUTLINE}
                                     type={ButtonType.RESET}
