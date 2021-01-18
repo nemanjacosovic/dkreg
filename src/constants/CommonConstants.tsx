@@ -10,14 +10,24 @@ export enum ButtonStyle {
     OUTLINE = 'outline'
 }
 
-const InputConstants = {
+export const InputConstants = {
     PASSWORD: 'password',
     TEXT: 'text',
     EMAIL: 'email',
     ICON_SIZE: 22,
     ERROR_TEXT: 'Forkert værdi',
     ERROR_TEXT_REQUIRED: 'Påkrævet område',
-    ERROR_TEXT_LENGTH: 'Kontroller længden'
+    ERROR_TEXT_LENGTH: 'Kontroller længden',
+    ERROR_MANUAL: 'Eksisterer ikke'
+}
+
+export enum FormFieldsConstants {
+    NAME_FIRST = 'nameFirst',
+    NAME_LAST = 'nameLast',
+    POSTAL_CODE = 'postalCode',
+    CITY = 'city',
+    EMAIL = 'email',
+    PASSWORD = 'password'
 }
 
 export const LanguageConstant = {

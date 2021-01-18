@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 
-import InputConstants, {ButtonStyle, ButtonType, LanguageConstant} from "./constants/CommonConstants";
+import {ButtonStyle, ButtonType, InputConstants, LanguageConstant, FormFieldsConstants} from "./constants/CommonConstants";
 
 import Button from "./components/Button/Button";
 import Input from "./components/Input/Input";
@@ -55,7 +55,7 @@ function App() {
     const [isCityValid, setIsCityValid] = useState(false);
     const [dataCity, setDataCity] = useState<any>(null);
 
-    const {register, handleSubmit, reset, errors} = useForm<FormValues>();
+    const {register, handleSubmit, reset, errors, setError} = useForm<FormValues>();
 
     const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
@@ -106,15 +106,23 @@ function App() {
 
     useEffect(() => {
         if (isPostalCodeValid && isCityValid) {
-
-            if(dataPostalCode?.navn === dataCity?.navn) {
-                console.log('BINGO');
-            }
-            // Timeout just to see the animation
-            setTimeout(() => {
-                setIsFormCompleted(true);
+            if (!!dataPostalCode?.navn && !!dataCity?.navn && dataPostalCode?.navn === dataCity?.navn) {
+                // Timeout just to see the animation
+                setTimeout(() => {
+                    setIsFormCompleted(true);
+                    setIsFormParsed(false);
+                }, 2000);
+            } else {
+                setError(FormFieldsConstants.POSTAL_CODE, {
+                    type: "manual",
+                    message: InputConstants.ERROR_MANUAL
+                });
+                setError(FormFieldsConstants.CITY, {
+                    type: "manual",
+                    message: InputConstants.ERROR_MANUAL
+                });
                 setIsFormParsed(false);
-            }, 2000);
+            }
         }
     }, [isPostalCodeValid, isCityValid, dataPostalCode?.navn, dataCity?.navn]);
     
@@ -125,7 +133,11 @@ function App() {
 
         if (response.status !== 200) {
             setIsPostalCodeValid(false);
-            console.error('API error with postal code.');
+            setError(FormFieldsConstants.POSTAL_CODE, {
+                type: "manual",
+                message: InputConstants.ERROR_MANUAL
+            });
+
             return null;
         }
 
@@ -141,7 +153,11 @@ function App() {
 
         if (response.status !== 200) {
             setIsCityValid(false);
-            console.error('API error with city name.');
+            setError(FormFieldsConstants.CITY, {
+                type: "manual",
+                message: InputConstants.ERROR_MANUAL
+            });
+
             return null;
         }
 
@@ -175,8 +191,8 @@ function App() {
                         <Input
                             className='input-name-first'
                             inputError={errors.nameFirst}
-                            inputId='nameFirst'
-                            inputName='nameFirst'
+                            inputId={FormFieldsConstants.NAME_FIRST}
+                            inputName={FormFieldsConstants.NAME_FIRST}
                             inputRef={register(formRefAttributes.nameFirst)}
                             inputType={InputConstants.TEXT}
                             labelText={LanguageConstant.NAME_FIRST}
@@ -185,8 +201,8 @@ function App() {
                         <Input
                             className='input-name-last'
                             inputError={errors.nameLast}
-                            inputId='nameLast'
-                            inputName='nameLast'
+                            inputId={FormFieldsConstants.NAME_LAST}
+                            inputName={FormFieldsConstants.NAME_LAST}
                             inputRef={register(formRefAttributes.nameLast)}
                             inputType={InputConstants.TEXT}
                             labelText={LanguageConstant.NAME_LAST}
@@ -197,8 +213,8 @@ function App() {
                         <Input
                             className='input-postal-code'
                             inputError={errors.postalCode}
-                            inputId='postalCode'
-                            inputName='postalCode'
+                            inputId={FormFieldsConstants.POSTAL_CODE}
+                            inputName={FormFieldsConstants.POSTAL_CODE}
                             inputRef={register(formRefAttributes.postalCode)}
                             inputType={InputConstants.TEXT}
                             labelText={LanguageConstant.POSTAL_CODE}
@@ -207,8 +223,8 @@ function App() {
                         <Input
                             className='input-city'
                             inputError={errors.city}
-                            inputId='city'
-                            inputName='city'
+                            inputId={FormFieldsConstants.CITY}
+                            inputName={FormFieldsConstants.CITY}
                             inputRef={register(formRefAttributes.city)}
                             inputType={InputConstants.TEXT}
                             labelText={LanguageConstant.CITY}
@@ -220,8 +236,8 @@ function App() {
                             className='input-email'
                             inputError={errors.email}
                             inputHint={LanguageConstant.EMAIL_HINT}
-                            inputId='email'
-                            inputName='email'
+                            inputId={FormFieldsConstants.EMAIL}
+                            inputName={FormFieldsConstants.EMAIL}
                             inputRef={register(formRefAttributes.email)}
                             inputType={InputConstants.EMAIL}
                             labelText={LanguageConstant.NAME_LAST}
@@ -233,8 +249,8 @@ function App() {
                             className='input-password'
                             inputError={errors.password}
                             inputHint={LanguageConstant.PASSWORD_HINT}
-                            inputId='password'
-                            inputName='password'
+                            inputId={FormFieldsConstants.PASSWORD}
+                            inputName={FormFieldsConstants.PASSWORD}
                             inputRef={register(formRefAttributes.password)}
                             inputType={InputConstants.PASSWORD}
                             labelText={LanguageConstant.PASSWORD}
