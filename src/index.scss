@@ -113,7 +113,16 @@ main {
     font-weight: 600;
     line-height: 22px;
     padding-top: 15px;
+    position: relative;
     color: $color-gray-40;
+
+    & span {
+      position: absolute;
+      transform: translateX(10px);
+      animation: success-smiley 600ms ease-in forwards;
+      animation-delay: 1000ms;
+      transform-origin: 40% 50%;
+    }
   }
 }
 
@@ -124,7 +133,6 @@ footer {
     font-size: 10px;
     position: fixed;
     padding-bottom: 0;
-    transform: translate3d(-50%, -10px, 0);
   }
 
   display: block;
@@ -134,4 +142,13 @@ footer {
   color: $color-white;
   padding-bottom: 15px;
   text-shadow: 0 1px 3px $color-link;
+}
+
+@keyframes success-smiley {
+  0% {
+    transform: translateX(10px) rotate(0);
+  }
+  100% {
+     transform: translateX(10px) rotate(90deg);
+  }
 }

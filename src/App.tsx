@@ -53,7 +53,7 @@ function App() {
     const [isPostalCodeValid, setIsPostalCodeValid] = useState(false);
     const [dataPostalCode, setDataPostalCode] = useState(null);
     const [isCityValid, setIsCityValid] = useState(false);
-    const [dataCity, setDataCity] = useState(null);
+    const [dataCity, setDataCity] = useState<any>(null);
 
     const {register, handleSubmit, reset, errors} = useForm<FormValues>();
 
@@ -105,11 +105,15 @@ function App() {
     }
 
     useEffect(() => {
+        console.log('useEffect');
         if (isPostalCodeValid && isCityValid) {
-            setIsFormCompleted(true);
-            setIsFormParsed(false);
+            // Timeout just to see the animation
+            setTimeout(() => {
+                setIsFormCompleted(true);
+                setIsFormParsed(false);
+            }, 2000);
         }
-    }, [dataPostalCode, dataCity]);
+    }, [isPostalCodeValid, isCityValid]);
     
     // API's https://dawa.aws.dk/dok/api/
     const _checkPostalCode = async (postalCode: number) => {
@@ -138,9 +142,11 @@ function App() {
             return null;
         }
 
-        const dataCity = await response.json();
+        const dataCityInfo = await response.json();
 
-        setDataCity(dataCity[0]);
+        console.log(dataCityInfo);
+
+        setDataCity(dataCityInfo[0]);
         setIsCityValid(true);
     };
 
@@ -260,8 +266,8 @@ function App() {
         return (
             <div className="dkreg-success">
                 <img src={Cake} alt={LanguageConstant.SIGN_UP} title={LanguageConstant.SIGN_UP}/>
-                <h2>{LanguageConstant.GREAT_WORK} {formData?.nameFirst}!</h2>
-                <p>{LanguageConstant.CHECK_YOUR_INBOX}</p>
+                <h2>{LanguageConstant.GREAT_WORK} {formData?.nameFirst} {LanguageConstant.FROM} {dataCity?.navn}!</h2>
+                <p>{LanguageConstant.CHECK_YOUR_INBOX}<span>; )</span></p>
             </div>
         )
     };

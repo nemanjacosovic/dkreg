@@ -73,6 +73,7 @@ export const LanguageConstant = {
     FORM_SUBMIT: 'Opret profil',
 
     GREAT_WORK: 'Fantastisk arbejde',
+    FROM: 'fra',
     CHECK_YOUR_INBOX: 'se din indbakke'
 }
 
