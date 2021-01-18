@@ -116,7 +116,7 @@ class Input extends PureComponent<IInputProps<HTMLInputElement>, State> {
 
         return (
             <div className="dkreg-form-block__helper">
-                {inputError?.message ? this._renderInputError() : this._renderInputHint()}
+                {inputError ? this._renderInputError() : this._renderInputHint()}
             </div>
         );
     };

@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  className="dkreg"
+>
+  <main
+    className="flex items-center min-h-screen p-4 lg:justify-center"
+  >
+    <div
+      className="flex flex-col overflow-hidden rounded-3xl shadow-xl max md:flex-row md:flex-1 lg:max-w-screen-md"
+    >
+      <div
+        className="p-5 bg-white md:flex-1"
+      >
+        <h1
+          className="text-2xl font-semibold pb-5"
+        >
+          Tilmelde
+        </h1>
+        <form
+          className="dkreg-form"
+          onSubmit={[Function]}
+        >
+          <fieldset
+            className="dkreg-form__group dkreg-form__group--first-last"
+          >
+            <Input
+              className="input-name-first"
+              inputId="nameFirst"
+              inputName="nameFirst"
+              inputRef={[Function]}
+              inputType="text"
+              labelText="Fornavn"
+              placeholderText="Harald"
+            />
+            <Input
+              className="input-name-last"
+              inputId="nameLast"
+              inputName="nameLast"
+              inputRef={[Function]}
+              inputType="text"
+              labelText="Efternavn"
+              placeholderText="Holm"
+            />
+          </fieldset>
+          <fieldset
+            className="dkreg-form__group dkreg-form__group--email"
+          >
+            <Input
+              className="input-email"
+              inputHint="Du kan bruge bogstaver, tal og punktum"
+              inputId="email"
+              inputName="email"
+              inputRef={[Function]}
+              inputType="email"
+              labelText="Efternavn"
+              placeholderText="henry.holm@email.dk"
+            />
+          </fieldset>
+          <fieldset
+            className="dkreg-form__group dkreg-form__group--password"
+          >
+            <Input
+              className="input-password"
+              inputHint="Brug 10 eller flere tegn med en blanding af bogstaver, tal og symboler"
+              inputId="password"
+              inputName="password"
+              inputRef={[Function]}
+              inputType="password"
+              labelText="Kodeord"
+              placeholderText="Vær unik"
+            />
+          </fieldset>
+          <div
+            className="dkreg-form-controls"
+          >
+            <ForwardRef
+              btnStyle="outline"
+              label="Nulstil"
+              onClick={[Function]}
+              type="reset"
+            />
+            <ForwardRef
+              btnStyle="primary"
+              label="Opret profil"
+              type="submit"
+            />
+          </div>
+        </form>
+      </div>
+      <div
+        className="p-4 py-6 text-white bg-white bg-opacity-70 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly"
+        style={
+          Object {
+            "backdropFilter": "blur(6px)",
+          }
+        }
+      >
+        <Logo
+          aria-label="Logo"
+          description="DKreg logo"
+          svgHeight="150"
+          svgWidth="auto"
+          title="DKreg Hjemmeside"
+        />
+      </div>
+    </div>
+  </main>
+  <footer>
+    Copyright 2021 DKreg by Auxburgo
+  </footer>
+</div>
+`;

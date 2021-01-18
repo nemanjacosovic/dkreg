@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
+import { ButtonStyle, ButtonType, LanguageConstant } from "../../constants/CommonConstants";
+
 import Button from './Button';
-import {ButtonStyle, ButtonType, LanguageConstant} from "../../constants/CommonConstants";
 
 const testProps = {
     btnStyle: ButtonStyle.PRIMARY,

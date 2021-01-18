@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  className="dkreg-form-block dkreg-form-block--input-name-first"
+>
+  <label
+    className="dkreg-form-block__label"
+    htmlFor="nameFirst"
+  >
+    Fornavn
+  </label>
+  <span
+    className="dkreg-form-block__input-wrapper"
+  >
+    <input
+      className="dkreg-form-block__input"
+      id="nameFirst"
+      name="nameFirst"
+      placeholder="Harald"
+      type="text"
+    />
+  </span>
+  <div
+    className="dkreg-form-block__helper"
+  >
+    <span
+      className="dkreg-form-block__helper--error"
+    >
+      <IconExclamationCircle
+        svgHeight="18"
+      />
+      Forkert værdi
+    </span>
+  </div>
+</div>
+`;

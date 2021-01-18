@@ -159,7 +159,7 @@ function App() {
                     </div>
                 </div>
             </main>
-            <footer>footer</footer>
+            <footer className="-mt-16">Copyright &copy; 2021 DKreg by Auxburgo</footer>
         </div>
     );
 }
