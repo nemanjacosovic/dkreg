@@ -51,7 +51,7 @@ function App() {
     const [formData, setFormData] = useState<FormValues>(defaultValues);
     const [isFormCompleted, setIsFormCompleted] = useState(false);
     const [isPostalCodeValid, setIsPostalCodeValid] = useState(false);
-    const [dataPostalCode, setDataPostalCode] = useState(null);
+    const [dataPostalCode, setDataPostalCode] = useState<any>(null);
     const [isCityValid, setIsCityValid] = useState(false);
     const [dataCity, setDataCity] = useState<any>(null);
 
@@ -106,13 +106,17 @@ function App() {
 
     useEffect(() => {
         if (isPostalCodeValid && isCityValid) {
+
+            if(dataPostalCode?.navn === dataCity?.navn) {
+                console.log('BINGO');
+            }
             // Timeout just to see the animation
             setTimeout(() => {
                 setIsFormCompleted(true);
                 setIsFormParsed(false);
             }, 2000);
         }
-    }, [isPostalCodeValid, isCityValid]);
+    }, [isPostalCodeValid, isCityValid, dataPostalCode?.navn, dataCity?.navn]);
     
     // API's https://dawa.aws.dk/dok/api/
     const _checkPostalCode = async (postalCode: number) => {
