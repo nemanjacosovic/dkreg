@@ -17,17 +17,12 @@ interface IDOB {
     year: number;
 }
 
-interface IRegForm {
+interface IRegForm extends FormValues {
     accountType?: string;
-    nameFirst: string;
-    nameLast: string;
-    nameMiddle?: string;
-    email: string;
-    password: string;
     passwordRepeat?: string;
     dateOfBirth?: IDOB;
-    postCode?: string;
     streetName?: string;
+    streetNumber?: string;
     termsOfService?: boolean;
     gdprConsent?: boolean;
     newsletter?: boolean;
@@ -36,6 +31,8 @@ interface IRegForm {
 interface FormValues {
     nameFirst: string;
     nameLast: string;
+    city: string;
+    postalCode: string;
     email: string;
     password: string;
 }
@@ -43,6 +40,8 @@ interface FormValues {
 const defaultValues = {
     nameFirst: '',
     nameLast: '',
+    city: '',
+    postalCode: '',
     email: '',
     password: ''
 };
@@ -53,9 +52,64 @@ function App() {
     const [isFormCompleted, setIsFormCompleted] = useState(false);
     const {register, handleSubmit, reset, errors} = useForm<FormValues>({defaultValues});
 
+    const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+
+    const formRefAttributes = {
+        nameFirst: {
+            required: LanguageConstant.NAME_FIRST_ERROR_REQUIRED,
+            pattern: regexName,
+            minLength: {
+                value: 2,
+                message: LanguageConstant.NAME_FIRST_ERROR_LENGTH
+            }
+        },
+        nameLast: {
+            required: LanguageConstant.NAME_LAST_ERROR_REQUIRED,
+            pattern: regexName,
+            minLength: {
+                value: 2,
+                message: LanguageConstant.NAME_LAST_ERROR_LENGTH
+            }
+        },
+        city: {
+            required: LanguageConstant.CITY_ERROR_REQUIRED,
+            minLength: {
+                value: 4,
+                message: LanguageConstant.CITY_ERROR_LENGTH
+            }
+        },
+        postalCode: {
+            required: LanguageConstant.POSTAL_CODE_ERROR_REQUIRED,
+            minLength: {
+                value: 4,
+                message: LanguageConstant.POSTAL_CODE_ERROR_LENGTH
+            },
+            pattern: /^(?:[1-24-9]\d{3}|3[0-8]\d{2})$/
+        },
+        email: {
+            required: LanguageConstant.EMAIL_ERROR_REQUIRED,
+            pattern: /^\S+@\S+\.\S+$/
+        },
+        password: {
+            required: LanguageConstant.PASSWORD_ERROR_REQUIRED,
+            minLength: {
+                value: 10,
+                message: LanguageConstant.PASSWORD_ERROR_LENGTH
+            }
+        }
+    }
+
+    // https://dawa.aws.dk/dok/api/
+    // https://dawa.aws.dk/postnumre
+    const _checkPostalCode = () => {};
+    const _checkCityName = () => {};
+
     const onFormSubmit = (data: IRegForm) => {
         setIsFormLoading(true);
         setFormData(data);
+
+        _checkPostalCode();
+        _checkCityName();
 
         setTimeout(() => {
             setIsFormCompleted(true)
@@ -93,6 +147,28 @@ function App() {
                             inputType={InputConstants.TEXT}
                             labelText={LanguageConstant.NAME_LAST}
                             placeholderText={LanguageConstant.NAME_LAST_PLACEHOLDER}
+                        />
+                    </fieldset>
+                    <fieldset className="dkreg-form__group dkreg-form__group--city-code">
+                        <Input
+                            className='input-postal-code'
+                            inputError={errors.postalCode}
+                            inputId='postalCode'
+                            inputName='postalCode'
+                            inputRef={register(formRefAttributes.postalCode)}
+                            inputType={InputConstants.TEXT}
+                            labelText={LanguageConstant.POSTAL_CODE}
+                            placeholderText={LanguageConstant.POSTAL_CODE_PLACEHOLDER}
+                        />
+                        <Input
+                            className='input-city'
+                            inputError={errors.city}
+                            inputId='city'
+                            inputName='city'
+                            inputRef={register(formRefAttributes.city)}
+                            inputType={InputConstants.TEXT}
+                            labelText={LanguageConstant.CITY}
+                            placeholderText={LanguageConstant.CITY_PLACEHOLDER}
                         />
                     </fieldset>
                     <fieldset className="dkreg-form__group dkreg-form__group--email">
@@ -153,38 +229,6 @@ function App() {
             </div>
         )
     };
-
-    const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-
-    const formRefAttributes = {
-        nameFirst: {
-            required: LanguageConstant.NAME_FIRST_ERROR_REQUIRED,
-            pattern: regexName,
-            minLength: {
-                value: 2,
-                message: LanguageConstant.NAME_FIRST_ERROR_LENGTH
-            }
-        },
-        nameLast: {
-            required: LanguageConstant.NAME_LAST_ERROR_REQUIRED,
-            pattern: regexName,
-            minLength: {
-                value: 2,
-                message: LanguageConstant.NAME_LAST_ERROR_LENGTH
-            }
-        },
-        email: {
-            required: LanguageConstant.EMAIL_ERROR_REQUIRED,
-            pattern: /^\S+@\S+\.\S+$/
-        },
-        password: {
-            required: LanguageConstant.PASSWORD_ERROR_REQUIRED,
-            minLength: {
-                value: 10,
-                message: LanguageConstant.PASSWORD_ERROR_LENGTH
-            }
-        }
-    }
 
     return (
         <div className="dkreg">

@@ -35,6 +35,20 @@ export const LanguageConstant = {
     NAME_LAST_ERROR_LENGTH: InputConstants.ERROR_TEXT_LENGTH,
     NAME_LAST_PLACEHOLDER: 'Holm',
 
+    CITY: 'By',
+    CITY_HINT: '2200',
+    CITY_ERROR: InputConstants.ERROR_TEXT,
+    CITY_ERROR_REQUIRED: InputConstants.ERROR_TEXT_REQUIRED,
+    CITY_ERROR_LENGTH: InputConstants.ERROR_TEXT_LENGTH,
+    CITY_PLACEHOLDER: 'København',
+
+    POSTAL_CODE: 'Postnummer',
+    POSTAL_CODE_HINT: '',
+    POSTAL_CODE_ERROR: 'Postnummer',
+    POSTAL_CODE_ERROR_REQUIRED: 'Postnummer',
+    POSTAL_CODE_ERROR_LENGTH: 'Postnummer',
+    POSTAL_CODE_PLACEHOLDER: 'Postnummer',
+
     EMAIL: 'E-mail',
     EMAIL_HINT: 'Du kan bruge bogstaver, tal og punktum',
     EMAIL_ERROR: InputConstants.ERROR_TEXT,

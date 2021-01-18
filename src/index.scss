@@ -32,7 +32,8 @@ main {
 
   &__group {
     @media screen and (min-width : 768px) {
-      &--first-last {
+      &--first-last,
+      &--city-code {
         display: flex;
 
         .dkreg-form-block {
@@ -43,6 +44,16 @@ main {
           &:last-child {
             padding-right: 0;
             padding-left: 8px;
+          }
+        }
+      }
+
+      &--city-code {
+        .dkreg-form-block {
+          flex: 0 0 40%;
+
+          &:last-child {
+            flex: 0 0 60%;
           }
         }
       }
