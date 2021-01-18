@@ -2,6 +2,7 @@
   "name": "dkreg",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://auxburgo.com/dkreg",
   "dependencies": {
     "@craco/craco": "^6.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
