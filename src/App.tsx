@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 import InputConstants, {ButtonStyle, ButtonType, LanguageConstant} from "./constants/CommonConstants";
@@ -32,7 +32,7 @@ interface FormValues {
     nameFirst: string;
     nameLast: string;
     city: string;
-    postalCode: string;
+    postalCode: number;
     email: string;
     password: string;
 }
@@ -41,16 +41,21 @@ const defaultValues = {
     nameFirst: '',
     nameLast: '',
     city: '',
-    postalCode: '',
+    postalCode: 0,
     email: '',
     password: ''
 };
 
 function App() {
-    const [isFormLoading, setIsFormLoading] = useState(false);
+    const [isFormParsed, setIsFormParsed] = useState(false);
     const [formData, setFormData] = useState<FormValues>(defaultValues);
     const [isFormCompleted, setIsFormCompleted] = useState(false);
-    const {register, handleSubmit, reset, errors} = useForm<FormValues>({defaultValues});
+    const [isPostalCodeValid, setIsPostalCodeValid] = useState(false);
+    const [dataPostalCode, setDataPostalCode] = useState(null);
+    const [isCityValid, setIsCityValid] = useState(false);
+    const [dataCity, setDataCity] = useState(null);
+
+    const {register, handleSubmit, reset, errors} = useForm<FormValues>();
 
     const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
@@ -99,34 +104,52 @@ function App() {
         }
     }
 
-    // https://dawa.aws.dk/dok/api/
-    // https://dawa.aws.dk/postnumre
-    const _checkPostalCode = async () => {
+    useEffect(() => {
+        if (isPostalCodeValid && isCityValid) {
+            setIsFormCompleted(true);
+            setIsFormParsed(false);
+        }
+    }, [dataPostalCode, dataCity]);
+    
+    // API's https://dawa.aws.dk/dok/api/
+    const _checkPostalCode = async (postalCode: number) => {
         const apiUrlPostCode = 'https://dawa.aws.dk/postnumre';
-        const response = await fetch(`${apiUrlPostCode}/${formData.postalCode}`);
+        const response = await fetch(`${apiUrlPostCode}?nr=${postalCode}`);
+
+        if (response.status !== 200) {
+            setIsPostalCodeValid(false);
+            console.error('API error with postal code.');
+            return null;
+        }
+
         const dataPostCode = await response.json();
-        console.log(dataPostCode);
+
+        setDataPostalCode(dataPostCode[0]);
+        setIsPostalCodeValid(true);
     };
 
-    const _checkCityName = async () => {
-        console.log('_checkCityName');
-        return null;
-        // const apiUrlCity = 'https://dawa.aws.dk/postnumre';
-        // const response = await fetch(apiUrlCity);
-        // const dataCity = await response.json();
-        // console.log(dataCity);
+    const _checkCityName = async (city: string) => {
+        const apiUrlCity = 'https://dawa.aws.dk/supplerendebynavne2';
+        const response = await fetch(`${apiUrlCity}?navn=${city}`); // medtagnedlagte param ??
+
+        if (response.status !== 200) {
+            setIsCityValid(false);
+            console.error('API error with city name.');
+            return null;
+        }
+
+        const dataCity = await response.json();
+
+        setDataCity(dataCity[0]);
+        setIsCityValid(true);
     };
 
     const onFormSubmit = (data: IRegForm) => {
-        setIsFormLoading(true);
+        setIsFormParsed(true);
         setFormData(data);
 
-        _checkPostalCode();
-        _checkCityName();
-
-        setTimeout(() => {
-            setIsFormCompleted(true)
-        }, 1500);
+        _checkPostalCode(data.postalCode);
+        _checkCityName(data.city);
     };
 
     const _resetForm = () => reset(defaultValues);
@@ -221,7 +244,7 @@ function App() {
                             btnStyle={ButtonStyle.PRIMARY}
                             type={ButtonType.SUBMIT}
                             label={LanguageConstant.FORM_SUBMIT}
-                            loading={isFormLoading}
+                            loading={isFormParsed}
                         />
                     </div>
                 </form>
