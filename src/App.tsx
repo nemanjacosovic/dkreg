@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 import InputConstants, {ButtonStyle, ButtonType, LanguageConstant} from "./constants/CommonConstants";
 
 import Logo from "./assets/Logo";
-import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
+import Input from "./components/Input/Input";
 
 import './App.scss';
 
@@ -46,11 +46,24 @@ const defaultValues = {
 };
 
 function App() {
+    const [isFormLoading, setIsFormLoading] = useState(false);
     const {register, handleSubmit, reset, errors} = useForm<FormValues>({defaultValues});
+
     const onFormSubmit = (data: IRegForm) => {
-        console.log(data);
+        setIsFormLoading(true);
+
+        setTimeout(() => {
+            console.log(data);
+        }, 1500);
+
+        // set loading for 1.5 sec
+        // fade out form 300 ms
+        // fade in cake and congrats 300 ms
     };
+
     const _resetForm = () => reset(defaultValues);
+
+    const _successRender = () => {};
 
     const regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
@@ -88,7 +101,7 @@ function App() {
         <div className="dkreg">
             <main className="flex items-center min-h-screen p-4 lg:justify-center">
                 <div className="flex flex-col overflow-hidden rounded-3xl shadow-xl max md:flex-row md:flex-1 lg:max-w-screen-md">
-                    <div className="p-5 bg-white md:flex-1">
+                    <div className="p-5 bg-white order-last md:order-first md:flex-1">
                         <h1 className="text-2xl font-semibold pb-5">Tilmelde</h1>
                         <form className="dkreg-form" onSubmit={handleSubmit(onFormSubmit)}>
                             <fieldset className="dkreg-form__group dkreg-form__group--first-last">
@@ -150,12 +163,14 @@ function App() {
                                     btnStyle={ButtonStyle.PRIMARY}
                                     type={ButtonType.SUBMIT}
                                     label={LanguageConstant.FORM_SUBMIT}
+                                    loading={isFormLoading}
                                 />
                             </div>
                         </form>
+                        {_successRender()}
                     </div>
-                    <div className="p-4 py-6 text-white bg-white bg-opacity-70 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly" style={{backdropFilter: 'blur(6px)'}}>
-                        <Logo title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo" svgWidth="auto" svgHeight="150"/>
+                    <div className="p-4 py-6 order-first md:order-last text-white bg-white bg-opacity-70 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly" style={{backdropFilter: 'blur(6px)'}}>
+                        <Logo className="dkreg-logo" title="DKreg Hjemmeside" description="DKreg logo" aria-label="Logo"/>
                     </div>
                 </div>
             </main>

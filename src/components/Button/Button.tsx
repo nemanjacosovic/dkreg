@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
+
 import { ButtonStyle } from "../../constants/CommonConstants";
 
-// Link, Loader
+import Loader from "../Loader/Loader";
 
 import './Button.scss';
 
@@ -21,12 +22,12 @@ type Props = ButtonProps;
 
 export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     const {
-        label,
+        btnStyle,
         onClick,
         type,
-        btnStyle
+        label,
+        loading
     } = props;
-
 
     const _onClick = (event: React.MouseEvent) => {
         if (typeof onClick === 'function') {
@@ -48,8 +49,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     };
 
     return (
-        <button type={type} className={`dkreg-form-button${parseButtonStyle()}`} onClick={_onClick}>
-            <span>{label}</span>
+        <button type={type} className={`dkreg-form-button${parseButtonStyle()}${loading ? ' loading' : ''}`} onClick={_onClick}>
+            {loading ? <Loader/> : label}
         </button>
     );
 });
