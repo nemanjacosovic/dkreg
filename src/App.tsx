@@ -101,8 +101,21 @@ function App() {
 
     // https://dawa.aws.dk/dok/api/
     // https://dawa.aws.dk/postnumre
-    const _checkPostalCode = () => {};
-    const _checkCityName = () => {};
+    const _checkPostalCode = async () => {
+        const apiUrlPostCode = 'https://dawa.aws.dk/postnumre';
+        const response = await fetch(`${apiUrlPostCode}/${formData.postalCode}`);
+        const dataPostCode = await response.json();
+        console.log(dataPostCode);
+    };
+
+    const _checkCityName = async () => {
+        console.log('_checkCityName');
+        return null;
+        // const apiUrlCity = 'https://dawa.aws.dk/postnumre';
+        // const response = await fetch(apiUrlCity);
+        // const dataCity = await response.json();
+        // console.log(dataCity);
+    };
 
     const onFormSubmit = (data: IRegForm) => {
         setIsFormLoading(true);
